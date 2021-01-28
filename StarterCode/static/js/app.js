@@ -1,3 +1,4 @@
+// Creates the dropdown menu
 function dropdownCreator() {
     var dropdownMenu = d3.select("#selDataset");
     d3.json('samples.json').then((sampleData) => {
@@ -7,16 +8,19 @@ function dropdownCreator() {
                 .text(info)
                 .property("value", info)
         });
+        // Creates charts and metadata with starting values
         metadataVisual(dataNames[0]);
         chartsVisual(dataNames[0]);
     });
 }
 
+// Changes the data set when sample is changed
 function optionChanged(sampleNo) {
     metadataVisual(sampleNo);
     chartsVisual(sampleNo);
 }
 
+// Creates the bar chart
 function chartsVisual(sampleNo){
     d3.json("samples.json").then((data) => {
         var samples = data.samples;
@@ -38,6 +42,7 @@ function chartsVisual(sampleNo){
     });
 }
 
+// Creates the metadata
 function metadataVisual(sampleNo){
     d3.json("samples.json").then((data) => {
         var metadataD3 = d3.select("#sample-metadata");
@@ -50,4 +55,5 @@ function metadataVisual(sampleNo){
     });
 }
 
+// Starts the program
 dropdownCreator();
