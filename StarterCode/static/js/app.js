@@ -18,24 +18,23 @@ function optionChanged(sampleNo) {
 }
 
 function chartsVisual(sampleNo){
-    d3.json("sample.json").then((data) => {
+    d3.json("samples.json").then((data) => {
         var samples = data.samples;
         var info = samples.filter(sampleObject => sampleObject.id == sampleNo);
 
-        var otu_ids = info.otu_ids;
-        var otu_labels = info.otu_labels;
-        var sample_values = info.sample_values;
+        var otu_ids = info[0].otu_ids;
+        var otu_labels = info[0].otu_labels;
+        var sample_values = info[0].sample_values;
 
         var barChart = [{
             x: sample_values.slice(0, 10).reverse(),
             y: otu_ids.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse(),
             text: otu_labels.slice(0, 10).reverse(),
             type: 'bar',
-            orientation: 'h',
-            color: 'blue'
+            orientation: 'h'
         }];
 
-        Plotly.newPlot("bar", barChart);
+        Plotly.newPlot('bar', barChart);
     });
 }
 
