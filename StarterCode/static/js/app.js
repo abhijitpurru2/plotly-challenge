@@ -11,6 +11,18 @@ function dropdownCreator() {
     });
 }
 
+function populateData(sampleNo){
+    d3.json("samples.json").then((data2) => {
+        var metadataD3 = d3.select("#sample-metadata");
+        metadataD3.html("");
+        var metadataInfo = data2.metadata;
+        var info = metadataInfo.filter(sampleObject => sampleObject.id == sampleNo);
+        Object.entries(info[0]).forEach(([key, value]) => {
+            metadataD3.append("h6").text(`${key}: ${value}`);
+        });
+    });
+}
+
 dropdownCreator();
 
 
