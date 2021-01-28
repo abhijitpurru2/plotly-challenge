@@ -7,11 +7,12 @@ function dropdownCreator() {
             dropdownMenu.append("option")
                 .text(info)
                 .property("value", info)
-        })
+        });
+        metadataVisual(dataNames[0]);
     });
 }
 
-function populateData(sampleNo){
+function metadataVisual(sampleNo){
     d3.json("samples.json").then((data2) => {
         var metadataD3 = d3.select("#sample-metadata");
         metadataD3.html("");
@@ -23,7 +24,14 @@ function populateData(sampleNo){
     });
 }
 
+function chart(sampleNo){
+
+}
+
 dropdownCreator();
+
+
+
 
 
 
